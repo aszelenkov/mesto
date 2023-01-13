@@ -1,0 +1,23 @@
+.popup__input {
+  margin-bottom: 30px;
+  padding: 0 0 9px;
+  max-width: 358px;
+  width: 100%;
+  color: #000;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid rgba(0, 0, 0, .2);
+}
+
+.popup__input:last-of-type {
+  margin-bottom: 48px;
+}
+
+@media screen and (max-width: 570px) {
+  .popup__input:last-of-type {
+    margin-bottom: 45px;
+    }
+  }
