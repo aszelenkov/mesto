@@ -1,4 +1,5 @@
 .profile__info {
+  margin-right: 30px;
   display: grid;
   grid-template-areas:
   'name edit-button'
@@ -9,7 +10,7 @@
 
 @media screen and (max-width: 730px) {
   .profile__info {
-    margin: 26px auto 33px;
+    margin: 26px 19px 33px;
     gap: 7px 10px;
   }
 }

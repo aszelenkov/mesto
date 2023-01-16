@@ -3,14 +3,15 @@ const profileAboutElement = document.querySelector('.profile__about');
 const profileButtonEditElement = document.querySelector('.profile__button-edit');
 const popupElement = document.querySelector('.popup');
 const popupButtonCloseElement = popupElement.querySelector('.popup__button-close');
-const nameInputElement = popupElement.querySelector('.popup__input_text_name');
-const aboutInputElement = popupElement.querySelector('.popup__input_text_about');
+const popupFormElement = popupElement.querySelector('.popup__form');
+const popupFormInputNameElement = popupElement.querySelector('.popup__input_text_name');
+const popupFormInputAboutElement = popupElement.querySelector('.popup__input_text_about');
 
 //Открытие модального окна с подставлением данных из профиля
 const openPopup = function() {
   popupElement.classList.add('popup_opened');
-  nameInputElement.value = profileNameElement.textContent;
-  aboutInputElement.value = profileAboutElement.textContent;
+  popupFormInputNameElement.value = profileNameElement.textContent;
+  popupFormInputAboutElement.value = profileAboutElement.textContent;
 };
 
 profileButtonEditElement.addEventListener('click', openPopup);
@@ -25,9 +26,9 @@ popupButtonCloseElement.addEventListener('click', closePopup);
 //Обработчик отправки формы, закрытие по кнопке "Сохранить"
 function handleFormSubmit (evt) {
   evt.preventDefault();
-  profileNameElement.textContent = nameInputElement.value;
-  profileAboutElement.textContent = aboutInputElement.value;
+  profileNameElement.textContent = popupFormInputNameElement.value;
+  profileAboutElement.textContent = popupFormInputAboutElement.value;
   closePopup();
 };
 
-popupElement.addEventListener('submit', handleFormSubmit);
+popupFormElement.addEventListener('submit', handleFormSubmit);
