@@ -7,4 +7,5 @@
   grid-template-columns: 1fr min-content;
   align-items: baseline;
   box-sizing: border-box;
+  position: relative;
 }

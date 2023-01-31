@@ -6,6 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./pages/index.css">
   <title>Mesto Russia</title>
+  <script src="./scripts/array-cards.js" defer></script>
+  <script src="./scripts/index.js" defer></script>
 </head>
 
 <body class="page">
@@ -22,60 +24,62 @@
         <p class="profile__about">Исследователь океана</p>
         <button class="profile__button-edit" type="button" aria-label="Редактировать профиль"></button>
       </div>
-      <button class="profile__button-add" type="button" aria-label="Редактировать профиль"></button>
+      <button class="profile__button-add-item" type="button" aria-label="Добавить новое место"></button>
     </section>
 
     <section class="elements" aria-label="Секция с карточками">
       <ul class="elements__cards">
-        <li class="elements__item">
-          <img class="elements__photo" src="./images/karachaevsk.jpg" alt="Карачаевск">
-          <h2 class="elements__title">Карачаевск</h2>
-          <button class="elements__like" type="button"></button>
-        </li>
-        <li class="elements__item">
-          <img class="elements__photo" src="./images/elbrus.jpg" alt="Гора Эльбрус">
-          <h2 class="elements__title">Гора Эльбрус</h2>
-          <button class="elements__like" type="button"></button>
-        </li>
-        <li class="elements__item">
-          <img class="elements__photo" src="./images/dombai.jpg" alt="Домбай">
-          <h2 class="elements__title">Домбай</h2>
-          <button class="elements__like" type="button"></button>
-        </li>
-        <li class="elements__item">
-          <img class="elements__photo" src="./images/elbrus.jpg" alt="Гора Эльбрус">
-          <h2 class="elements__title">Гора Эльбрус</h2>
-          <button class="elements__like" type="button"></button>
-        </li>
-        <li class="elements__item">
-          <img class="elements__photo" src="./images/dombai.jpg" alt="Домбай">
-          <h2 class="elements__title">Домбай</h2>
-          <button class="elements__like" type="button"></button>
-        </li>
-        <li class="elements__item">
-          <img class="elements__photo" src="./images/karachaevsk.jpg" alt="Карачаевск">
-          <h2 class="elements__title">Карачаево-Черкессия</h2>
-          <button class="elements__like" type="button"></button>
-        </li>
+
       </ul>
     </section>
   </main>
 
   <footer class="footer">
-    <p class="footer__copyright">© 2023 Mesto Russia</p>
+    <p class="footer__copyright">&copy; 2023 Mesto Russia</p>
   </footer>
 
-  <div class="popup">
+  <div class="popup popup_edit">
     <div class="popup__container">
       <button class="popup__button-close" type="button" aria-label="Закрыть pop-up"></button>
-      <form class="popup__form" method="post" name="edit-profile">
+      <form class="popup__form popup__form_edit-profile" id="form-edit" method="post" name="form-edit-profile">
         <h2 class="popup__title">Редактировать профиль</h2>
-        <input class="popup__input popup__input_text_name" name="name" placeholder="Имя" type="text">
-        <input class="popup__input popup__input_text_about" name="about" placeholder="О себе" type="text">
-        <button class="popup__button-save" type="submit">Сохранить</button>
+        <input class="popup__input popup__input_profile_name" name="profile-name" placeholder="Имя" type="text">
+        <input class="popup__input popup__input_profile_about" name="profile-about" placeholder="О себе" type="text">
+        <button class="popup__button-save popup__button-save_edit" type="submit">Сохранить</button>
       </form>
     </div>
   </div>
-  <script src="./scripts/index.js"></script>
+
+  <div class="popup popup_item">
+    <div class="popup__container">
+      <button class="popup__button-close" type="button" aria-label="Закрыть pop-up"></button>
+      <form class="popup__form popup__form_item-add" id="form-add" method="post" name="form-add-item">
+        <h2 class="popup__title">Новое место</h2>
+        <input class="popup__input popup__input_item_title" name="item-name" placeholder="Название" type="text">
+        <input class="popup__input popup__input_item_url" name="item-url-img" placeholder="Ссылка на картинку" type="url">
+        <button class="popup__button-save" type="submit">Создать</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="popup popup_item_photo-view">
+    <div class="popup__container-view">
+      <button class="popup__button-close" type="button" aria-label="Закрыть pop-up"></button>
+      <figure class="popup__figure">
+        <img class="popup__photo" src="" alt="">
+        <figcaption class="popup__photo-caption"></figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <template class="item-template">
+    <li class="elements__item">
+      <img class="elements__photo" src="" alt="">
+      <h2 class="elements__title"></h2>
+      <button class="elements__like" type="button"></button>
+      <button class="elements__trash" type="button"></button>
+    </li>
+  </template>
+
 </body>
 </html>
