@@ -14,11 +14,15 @@ const popupButtonOpenEditElement = document.querySelector('.profile__button-edit
 const popupButtonOpenAddItemElement = document.querySelector('.profile__button-add-item');
 const popupButtonOpenItemPhotoViewElement = document.querySelector('.elements__photo')
 //Кнопки закрытия Модальных окон
+const popupButtonSave = document.querySelector('.popup__button-save');
 const popupButtonSaveEditProfile = document.querySelector('.popup__button-save_edit')
 const popupButtonCloseEditElement = popupProfileEditElement.querySelector('.popup__button-close');
 const popupButtonCloseAddItemElement = popupItemCreateElement.querySelector('.popup__button-close');
 const popupButtonCloseItemPhotoViewElement = popupItemPhotoView.querySelector('.popup__button-close');
 //Объявление форм и полей "профиля"
+const popupFormElement = document.querySelector('.popup__form');
+const popupInputElement = popupFormElement.querySelector('.popup__input');
+const popupFormErrorElement = document.querySelector('.popup__error');
 const popupFormEditElement = popupProfileEditElement.querySelector('.popup__form_edit-profile');
 const popupFormInputProfileNameElement = popupFormEditElement.querySelector('.popup__input_profile_name');
 const popupFormInputProfileAboutElement = popupFormEditElement.querySelector('.popup__input_profile_about');
@@ -27,8 +31,8 @@ const popupFormCreateItemElement = popupItemCreateElement.querySelector('.popup_
 const popupFormInputItemNameElement = popupFormCreateItemElement.querySelector('.popup__input_item_title');
 const popupFormInputItemUrlElement = popupFormCreateItemElement.querySelector('.popup__input_item_url');
 //Объявление кнопок удаления и лайка "карточки"
-const itemButtonDeleteElement = document.querySelector('.elements__trash');
-const itemButtonLikeElement = document.querySelector('.elements__like');
+const itemButtonDeleteElement = document.querySelectorAll('.elements__trash');
+const itemButtonLikeElement = document.querySelectorAll('.elements__like');
 //Шаблон карточки
 const templateElement = document.querySelector('.item-template').content.querySelector('.elements__item');
 const cardsElement = document.querySelector('.elements__cards');

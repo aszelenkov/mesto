@@ -6,8 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./pages/index.css">
   <title>Mesto Russia</title>
-  <script src="./scripts/array-cards.js" defer></script>
   <script src="./scripts/constants.js" defer></script>
+  <script src="./scripts/validate.js" defer></script>
+  <script src="./scripts/array-cards.js" defer></script>
   <script src="./scripts/index.js" defer></script>
 </head>
 
@@ -42,10 +43,12 @@
   <div class="popup popup_edit">
     <div class="popup__container">
       <button class="popup__button-close popup__close" type="button" aria-label="Закрыть pop-up"></button>
-      <form class="popup__form popup__form_edit-profile" id="form-edit" method="post" name="form-edit-profile">
+      <form class="popup__form popup__form_edit-profile" id="edit-profile" method="post" name="edit-profile" novalidate>
         <h2 class="popup__title">Редактировать профиль</h2>
-        <input class="popup__input popup__input_profile_name" name="profile-name" required placeholder="Имя" type="text">
-        <input class="popup__input popup__input_profile_about" name="profile-about"required placeholder="О себе" type="text">
+        <input id="name-input" class="popup__input popup__input_profile_name" name="profile-name" placeholder="Имя" type="text" minlength="2" maxlength="40" required>
+        <span class="name-input-error popup__input-error popup__error"></span>
+        <input id="about-input" class="popup__input popup__input_profile_about" name="profile-about" placeholder="О себе" type="text" minlength="2" maxlength="200" required>
+        <span class=" about-input-error popup__input-error popup__error" id="about__input-error"></span>
         <button class="popup__button-save popup__button-save_edit" type="submit">Сохранить</button>
       </form>
     </div>
@@ -54,10 +57,12 @@
   <div class="popup popup_item">
     <div class="popup__container">
       <button class="popup__button-close popup__close" type="button" aria-label="Закрыть pop-up"></button>
-      <form class="popup__form popup__form_item-add" id="form-add" method="post" name="form-add-item">
+      <form novalidate class="popup__form popup__form_item-add" id="add-item" method="post" name="add-item">
         <h2 class="popup__title">Новое место</h2>
-        <input class="popup__input popup__input_item_title" name="item-name" required placeholder="Название" type="text">
-        <input class="popup__input popup__input_item_url" name="item-url-img" required placeholder="Ссылка на картинку" type="url">
+        <input id="item-title" class="popup__input popup__input_item_title" name="item-title" placeholder="Название" type="text" minlength="2" maxlength="30" required>
+        <span class="item-title-error popup__input-error popup__error"></span>
+        <input id="item-url" class="popup__input popup__input_item_url" name="item-url" placeholder="Ссылка на картинку" type="url" required>
+        <span class="item-url-error popup__input-error popup__error"></span>
         <button class="popup__button-save" type="submit">Создать</button>
       </form>
     </div>

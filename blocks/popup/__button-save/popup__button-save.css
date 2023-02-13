@@ -1,18 +1,19 @@
 .popup__button-save {
   padding: 14px 0;
+  margin-bottom: 36.51px;
   max-width: 358px;
   width: 100%;
   color: #fff;
   background-color: #000;
-  border: none;
+  border: 1px solid #000;
   border-radius: 2px;
   font-weight: 400;
   font-size: 18px;
   line-height: 22px;
   text-align: center;
   cursor: pointer;
-
 }
+
 .popup__button-save:hover {
   opacity: .8;
 }
@@ -21,5 +22,6 @@
   .popup__button-save {
     font-size: 14px;
     line-height: 17px;
+    margin-bottom: 25px;
     }
   }
