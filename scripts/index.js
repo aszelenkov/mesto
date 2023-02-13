@@ -1,43 +1,34 @@
 //Функция открытия модальных окон
 function openPopup(popup) {
   popup.classList.add('popup_opened');
-  document.addEventListener('keydown', closeModalEscape());
+  document.addEventListener('keydown', closeModalEscape);
 };
 
 //Функция закрытия модальных окон
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
-  document.removeEventListener('keydown', closeModalEscape());
+  document.removeEventListener('keydown', closeModalEscape);
 };
 
 //закрытие модальных окон по оверлею и кнопке закрытия
-function closeModalMouse(popup) {
-  return function (evt) {
-    if (evt.target.classList.contains('popup_opened') || evt.target.classList.contains('popup__close')) {
-      closePopup(popup);
+popupsElement.forEach((popup) => {
+  popup.addEventListener('mousedown', (evt) => {
+    if (evt.target.classList.contains('popup_opened')) {
+      closePopup(popup)
     };
-  };
-};
+    if (evt.target.classList.contains('popup__close')) {
+      closePopup(popup)
+    };
+  });
+});
 
 //закрытие по клавише ESC
-function closeModalEscape() {
-  return function (evt) {
-    if (evt.key === "Escape") {
-      popupElement.forEach(popup => closePopup(popup));
-    };
+function closeModalEscape(evt) {
+  if (evt.key === "Escape") {
+    const openedPopup = document.querySelector('.popup_opened');
+    closePopup(openedPopup);
   };
 };
-
-//присвоение контейнера для закрытия модальных окон
-function handleCloseModal(popup) {
-  const closeMouse = closeModalMouse(popup);
-  const closeEscape = closeModalEscape();
-  popup.addEventListener('mousedown', closeMouse);
-};
-
-//при клике на кнопку закрытия модального окна
-popupElement.forEach(popup => handleCloseModal(popup));
-document.addEventListener('keydown', closeModalEscape());
 
 //Открытие по кнопке модалки редактирования "Профиля"
 popupButtonOpenEditElement.addEventListener('click', () => {
@@ -105,7 +96,7 @@ function handleFormSubmitItem(evt) {
   evt.target.reset();
 };
 //Функция отображения ошибок
-function errors() {
+function resetErrors() {
   const popupInput = Array.from(document.querySelectorAll('.popup__input'));
   const errorInput = Array.from(document.querySelectorAll('.popup__error'));
   errorInput.forEach((errorElement) =>

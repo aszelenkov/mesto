@@ -5,7 +5,8 @@ const profileAboutElement = document.querySelector('.profile__about');
 const itemNameElement = document.querySelector('.elements__title');
 const itemPhotoUrlElement = document.querySelector('.elements__photo');
 //Модальные окна
-const popupElement = document.querySelectorAll('.popup');
+const popupsElement = document.querySelectorAll('.popup');
+const openedPopup = document.querySelector('.popup_opened');
 const popupProfileEditElement = document.querySelector('.popup_edit');
 const popupItemCreateElement = document.querySelector('.popup_item');
 const popupItemPhotoView = document.querySelector('.popup_item_photo-view');
