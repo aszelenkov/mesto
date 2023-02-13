@@ -25,6 +25,16 @@
 * [Ссылка на макет в Figma 5 проектной работы](https://www.figma.com/file/bjyvbKKJN2naO0ucURl2Z0/JavaScript.-Sprint-5?node-id=0%3A1&t=LmPXx3UPiW6Q0wPo-0)
 
 
+# 6 Проектная работа:
+В этой проектной работе сделал валидацию форм с помощью JS
+Реализовано:
+1. Добавлена валидация форм "Профиля" и "Добавления карточек"
+2. Реализована функция закрытия модальных окон по клавише Escape
+3. Закрытие по клику на "Оверлей"
+
+* [Ссылка на макет в Figma 6 проектной работы](https://www.figma.com/file/kRVLKwYG3d1HGLvh7JFWRT/JavaScript.-Sprint-6?node-id=0%3A1)
+
+
 ## Использовались следующие технологии
 
 **Client:** HTML, CSS, JavaScript
