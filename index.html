@@ -6,10 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./pages/index.css">
   <title>Mesto Russia</title>
-  <script src="./scripts/constants.js" defer></script>
-  <script src="./scripts/validate.js" defer></script>
-  <script src="./scripts/array-cards.js" defer></script>
-  <script src="./scripts/index.js" defer></script>
+  <!-- <script src="./scripts/constants.js" defer></script> -->
+  <!-- <script src="./scripts/validate.js" defer></script> -->
+  <script type="module" src="./scripts/index.js" defer></script>
 </head>
 
 <body class="page">
@@ -78,7 +77,7 @@
     </div>
   </div>
 
-  <template class="item-template">
+  <template id="card-template" class="item-template">
     <li class="elements__item">
       <img class="elements__photo" src="#" alt="">
       <h2 class="elements__title"></h2>
@@ -86,6 +85,5 @@
       <button class="elements__trash" type="button"></button>
     </li>
   </template>
-
 </body>
 </html>
