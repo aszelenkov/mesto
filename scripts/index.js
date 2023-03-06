@@ -1,22 +1,30 @@
 import FormValidator from "./FormValidator.js";
 import Card from "./Card.js";
+import initialCards from './data.js';
+
+
+const config = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__button-save',
+  inactiveButtonClass: 'popup__button-save_disabled',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__error_visible'
+};
 
 //Профиль
 const profileNameElement = document.querySelector('.profile__name');
 const profileAboutElement = document.querySelector('.profile__about');
 //Модальные окна
 const popupsElement = document.querySelectorAll('.popup');
-// const openedPopup = document.querySelector('.popup_opened');
 const popupProfileEditElement = document.querySelector('.popup_edit');
 const popupItemCreateElement = document.querySelector('.popup_item');
-export const popupItemPhotoView = document.querySelector('.popup_item_photo-view');
 //Кнопки открытия Модальных окон
 const popupButtonOpenEditElement = document.querySelector('.profile__button-edit');
 const popupButtonOpenAddItemElement = document.querySelector('.profile__button-add-item');
-
 //Объявление форм и полей "профиля"
-const popupForms = Array.from(document.querySelectorAll('.popup__form')); // массив объектов форм
-const popupFormEditElement = popupProfileEditElement.querySelector('.popup__form_edit-profile');
+const popupButtonSaveEditProfile = document.querySelector('.popup__button-save_edit');
+const popupFormEditElement = document.querySelector('.popup__form_edit-profile');
 const popupFormInputProfileNameElement = popupFormEditElement.querySelector('.popup__input_profile_name');
 const popupFormInputProfileAboutElement = popupFormEditElement.querySelector('.popup__input_profile_about');
 //Объявление формы и полей формы "карточки"
@@ -25,36 +33,11 @@ const popupFormInputItemNameElement = popupFormCreateItemElement.querySelector('
 const popupFormInputItemUrlElement = popupFormCreateItemElement.querySelector('.popup__input_item_url');
 //Шаблон карточки
 const cardsElement = document.querySelector('.elements__cards');
-//Popup PhotoView
-export const popupItemPhotoViewName = popupItemPhotoView.querySelector('.popup__photo');
-export const popupItemPhotoViewCaption = popupItemPhotoView.querySelector('.popup__photo-caption');
-
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
+//создание валидаций для форм
+const formValidatorProfile = new FormValidator(config, popupFormEditElement);
+const formValidatorItem = new FormValidator(config, popupFormCreateItemElement);
+formValidatorProfile.enableValidation();
+formValidatorItem.enableValidation();
 
 //Функция открытия модальных окон
 export function openPopup(popup) {
@@ -89,11 +72,13 @@ function closeModalEscape(evt) {
 };
 
 //Открытие по кнопке модалки редактирования "Профиля"
-popupButtonOpenEditElement.addEventListener('click', () => {
+function openPopupForm() {
   popupFormInputProfileNameElement.value = profileNameElement.textContent;
   popupFormInputProfileAboutElement.value = profileAboutElement.textContent;
+  popupButtonSaveEditProfile.removeAttribute('disabled', '');
+  formValidatorProfile.resetErrors();
   openPopup(popupProfileEditElement);
-});
+};
 
 //Обработчик отправки формы Профиля, закрытие по кнопке "Сохранить"
 function handleFormSubmitProfile (evt) {
@@ -104,49 +89,46 @@ function handleFormSubmitProfile (evt) {
 };
 
 //Открытие по кнопке модалки добавления карточки
-popupButtonOpenAddItemElement.addEventListener('click', () => {
+function handlePopupButtonClick() {
+  formValidatorItem.resetErrors();
   openPopup(popupItemCreateElement);
-});
-
-//Функция отображения ошибок
-function resetErrors() {
-  const popupInput = Array.from(document.querySelectorAll('.popup__input'));
-  const errorInput = Array.from(document.querySelectorAll('.popup__error'));
-  errorInput.forEach((errorElement) =>
-    (errorElement.textContent = ''));
-  popupInput.forEach((inputElement) => {
-    (inputElement.classList.remove('.popup__input_type_error'));
-  });
 };
 
-initialCards.forEach((item) => {
-  const card = new Card(item, '#card-template');
+//Функция добавления из массива карточек
+function renderCard(item, templateSelector) {
+  const card = createCard(item, templateSelector);
+  cardsElement.prepend(card);
+};
+//Функция cоздания карточки
+function createCard(item, templateSelector) {
+  const card = new Card(item, templateSelector, openPopup);
   const cardElement = card.generateCard();
-  cardsElement.append(cardElement);
+  return cardElement;
+};
+//поиск карточек по запросу
+initialCards.forEach((item) => {
+  renderCard(item, '#card-template');
 });
 
-popupFormCreateItemElement.addEventListener('submit', (evt) => {
+//Добавление карточек на страницу
+function addCardToPage(name, link) {
+  const cardData = { name, link };
+  const card = createCard(cardData, '#card-template');
+  cardsElement.prepend(card);
+};
+
+//Обработчик добавления карточки
+function handleFormAddSubmitElement(evt) {
   evt.preventDefault();
   const name = popupFormInputItemNameElement.value;
   const link = popupFormInputItemUrlElement.value;
-  const card = new Card({ name, link }, '#card-template');
-  cardsElement.prepend(card.generateCard());
+  addCardToPage(name, link);
   closePopup(popupItemCreateElement);
   popupFormCreateItemElement.reset();
-});
+};
 
-popupForms.forEach(formElement => {
-  const formValidator = new FormValidator({
-    formSelector: '.popup__form',
-    inputSelector: '.popup__input',
-    submitButtonSelector: '.popup__button-save',
-    inactiveButtonClass: 'popup__button-save_disabled',
-    inputErrorClass: 'popup__input_type_error',
-    errorClass: 'popup__error_visible',
-  },formElement);
-  formValidator.enableValidation();
-});
-
-//Слушатели формы  "Профиля"
+//Слушатели форм
 popupFormEditElement.addEventListener('submit', handleFormSubmitProfile);
-
+popupButtonOpenAddItemElement.addEventListener('click', handlePopupButtonClick);
+popupButtonOpenEditElement.addEventListener('click', openPopupForm);
+popupFormCreateItemElement.addEventListener('submit', handleFormAddSubmitElement);

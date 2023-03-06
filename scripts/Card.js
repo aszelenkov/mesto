@@ -1,14 +1,12 @@
-
-import { openPopup,
-  popupItemPhotoView,
-  popupItemPhotoViewName,
-  popupItemPhotoViewCaption } from './index.js';
-
   export default class Card {
-  constructor(data, templateSelector) {
+  constructor(data, templateSelector, openPopup) {
     this._name = data.name;
     this._link = data.link;
     this._templateSelector = templateSelector;
+    this._openPopup = openPopup;
+    this._popupItemPhotoView = document.querySelector('.popup_item_photo-view');
+    this._popupItemPhotoViewName = this._popupItemPhotoView.querySelector('.popup__photo');
+    this._popupItemPhotoViewCaption = this._popupItemPhotoView.querySelector('.popup__photo-caption');
   };
 
   _getTemplate() {
@@ -21,16 +19,15 @@ import { openPopup,
     return cardElement;
   };
 
-
   _handleLikeClick() {
     this._element.querySelector('.elements__like').classList.toggle('elements__like_active');
   };
 
-  _handleCardClick() {
-    popupItemPhotoViewName.src = this._link;
-    popupItemPhotoViewName.alt = this._name;
-    popupItemPhotoViewCaption.textContent = this._name;
-    openPopup(popupItemPhotoView);
+  _handleCardClick(evt) {
+    this._popupItemPhotoViewName.setAttribute('src', evt.target.getAttribute('src'));
+    this._popupItemPhotoViewName.setAttribute('alt', `${this._name}`);
+    this._popupItemPhotoViewCaption.textContent = this._name;
+    this._openPopup(this._popupItemPhotoView);
   };
 
   _handleDeleteClick() {
