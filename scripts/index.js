@@ -40,7 +40,7 @@ formValidatorProfile.enableValidation();
 formValidatorItem.enableValidation();
 
 //Функция открытия модальных окон
-export function openPopup(popup) {
+function openPopup(popup) {
   popup.classList.add('popup_opened');
   document.addEventListener('keydown', closeModalEscape);
 };
