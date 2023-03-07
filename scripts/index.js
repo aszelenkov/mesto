@@ -72,7 +72,7 @@ function closeModalEscape(evt) {
 };
 
 //Открытие по кнопке модалки редактирования "Профиля"
-function openPopupForm() {
+function hundleEditButtonClick() {
   popupFormInputProfileNameElement.value = profileNameElement.textContent;
   popupFormInputProfileAboutElement.value = profileAboutElement.textContent;
   popupButtonSaveEditProfile.removeAttribute('disabled', '');
@@ -81,7 +81,7 @@ function openPopupForm() {
 };
 
 //Обработчик отправки формы Профиля, закрытие по кнопке "Сохранить"
-function handleFormSubmitProfile (evt) {
+function handleEditSubmitProfile (evt) {
   evt.preventDefault();
   profileNameElement.textContent = popupFormInputProfileNameElement.value;
   profileAboutElement.textContent = popupFormInputProfileAboutElement.value;
@@ -89,8 +89,7 @@ function handleFormSubmitProfile (evt) {
 };
 
 //Открытие по кнопке модалки добавления карточки
-function handlePopupButtonClick() {
-  formValidatorItem.resetErrors();
+function handleAddButtonClick() {
   openPopup(popupItemCreateElement);
 };
 
@@ -127,8 +126,8 @@ function handleFormAddSubmitElement(evt) {
   closePopup(popupItemCreateElement);
 };
 
-//Слушатели форм
-popupFormEditElement.addEventListener('submit', handleFormSubmitProfile);
-popupButtonOpenAddItemElement.addEventListener('click', handlePopupButtonClick);
-popupButtonOpenEditElement.addEventListener('click', openPopupForm);
+//Слушатели
+popupFormEditElement.addEventListener('submit', handleEditSubmitProfile);
+popupButtonOpenAddItemElement.addEventListener('click', handleAddButtonClick);
+popupButtonOpenEditElement.addEventListener('click', hundleEditButtonClick);
 popupFormCreateItemElement.addEventListener('submit', handleFormAddSubmitElement);
