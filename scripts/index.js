@@ -97,7 +97,7 @@ function handlePopupButtonClick() {
 //Функция добавления из массива карточек
 function renderCard(item, templateSelector) {
   const card = createCard(item, templateSelector);
-  cardsElement.prepend(card);
+  cardsElement.append(card);
 };
 //Функция cоздания карточки
 function createCard(item, templateSelector) {
@@ -123,8 +123,8 @@ function handleFormAddSubmitElement(evt) {
   const name = popupFormInputItemNameElement.value;
   const link = popupFormInputItemUrlElement.value;
   addCardToPage(name, link);
-  closePopup(popupItemCreateElement);
   popupFormCreateItemElement.reset();
+  closePopup(popupItemCreateElement);
 };
 
 //Слушатели форм
