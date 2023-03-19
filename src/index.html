@@ -4,20 +4,20 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./pages/index.css">
+  <!-- <link rel="stylesheet" href="./pages/index.css"> -->
   <title>Mesto Russia</title>
-  <script type="module" src="./scripts/index.js" defer></script>
+  <!-- <script type="module" src="./pages/index.js" defer></script> -->
 </head>
 
 <body class="page">
 
   <header class="header">
-    <img class="header__logo" src="./images/logo.svg" alt="Логотип Mesto Russia">
+    <img class="header__logo" src="<%=require('./images/logo.svg')%>" alt="Логотип Mesto Russia">
   </header>
 
   <main class="content">
     <section class="profile">
-      <img class="profile__avatar" src="./images/profile__avatar.jpg" alt="Аватар профиля">
+      <img class="profile__avatar" src="<%=require('./images/profile__avatar.jpg')%>" alt="Аватар профиля">
       <div class="profile__info">
         <h1 class="profile__name">Жак-Ив Кусто</h1>
         <p class="profile__about">Исследователь океана</p>
@@ -40,11 +40,11 @@
   <div class="popup popup_edit">
     <div class="popup__container">
       <button class="popup__button-close popup__close" type="button" aria-label="Закрыть pop-up"></button>
-      <form class="popup__form popup__form_edit-profile" id="edit-profile" method="post" name="edit-profile" novalidate>
+      <form class="popup__form popup__form_edit-profile" id="edit-profile" method="post" name="editProfile" novalidate>
         <h2 class="popup__title">Редактировать профиль</h2>
-        <input id="name-input" class="popup__input popup__input_profile_name" name="profile-name" placeholder="Имя" type="text" minlength="2" maxlength="40" required>
+        <input id="name-input" class="popup__input popup__input_profile_name" name="name" placeholder="Имя" type="text" minlength="2" maxlength="40" required>
         <span class="name-input-error popup__input-error popup__error"></span>
-        <input id="about-input" class="popup__input popup__input_profile_about" name="profile-about" placeholder="О себе" type="text" minlength="2" maxlength="200" required>
+        <input id="about-input" class="popup__input popup__input_profile_about" name="about" placeholder="О себе" type="text" minlength="2" maxlength="200" required>
         <span class=" about-input-error popup__input-error popup__error" id="about__input-error"></span>
         <button class="popup__button-save popup__button-save_edit popup__button-submit" type="submit">Сохранить</button>
       </form>
@@ -54,11 +54,11 @@
   <div class="popup popup_item">
     <div class="popup__container">
       <button class="popup__button-close popup__close" type="button" aria-label="Закрыть pop-up"></button>
-      <form novalidate class="popup__form popup__form_item-add" id="add-item" method="post" name="add-item">
+      <form novalidate class="popup__form popup__form_item-add" id="add-item" method="post" name="itemAdd">
         <h2 class="popup__title">Новое место</h2>
-        <input id="item-title" class="popup__input popup__input_item_title" name="item-title" placeholder="Название" type="text" minlength="2" maxlength="30" required>
+        <input id="item-title" class="popup__input popup__input_item_title" name="title" placeholder="Название" type="text" minlength="2" maxlength="30" required>
         <span class="item-title-error popup__input-error popup__error"></span>
-        <input id="item-url" class="popup__input popup__input_item_url" name="item-url" placeholder="Ссылка на картинку" type="url" required>
+        <input id="item-url" class="popup__input popup__input_item_url" name="url" placeholder="Ссылка на картинку" type="url" required>
         <span class="item-url-error popup__input-error popup__error"></span>
         <button class="popup__button-save popup__button-submit" type="submit">Создать</button>
       </form>
