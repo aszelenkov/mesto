@@ -25,13 +25,13 @@ import {
 } from '../utils/constants.js';
 import './index.css';
 
-// const api = new Api({
-//   baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-63/',
-//   headers: {
-//     authorization: '53225a79-808c-4502-af98-76089dda326c',
-//     'Content-Type': 'application/json'
-//   }
-// });
+const api = new Api({
+  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-63/',
+  headers: {
+    authorization: '53225a79-808c-4502-af98-76089dda326c',
+    'Content-Type': 'application/json'
+  }
+});
 
 
 
