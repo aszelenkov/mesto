@@ -6,11 +6,8 @@
   background-color: transparent;
   background-repeat: no-repeat;
   border: none;
-  justify-self: end;
-  margin: 30px 20px 30px 25px;
   cursor: pointer;
   transition: 0.3s;
-  grid-area: like;
 }
 
 .elements__like:hover {

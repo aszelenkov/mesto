@@ -5,7 +5,7 @@
   grid-template-areas: 'photo photo'
   'title like';
   grid-template-columns: 1fr min-content;
-  align-items: baseline;
+  align-items: center;
   box-sizing: border-box;
   position: relative;
 }

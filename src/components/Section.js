@@ -22,4 +22,3 @@ export default class Section {
     this._container.prepend(element);
   };
 };
-

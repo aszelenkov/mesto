@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="<%=require('./images/iconsfavicon.png')%>" type="image/x-icon">
   <title>Mesto Russia</title>
 </head>
 
@@ -15,7 +16,9 @@
 
   <main class="content">
     <section class="profile">
-      <img class="profile__avatar" src="<%=require('./images/profile__avatar.jpg')%>" alt="Аватар профиля">
+      <div class="profile__avatar-block">
+        <img class="profile__avatar" src="<%=require('./images/profile__avatar.jpg')%>" alt="Аватар профиля">
+      </div>
       <div class="profile__info">
         <h1 class="profile__name">Жак-Ив Кусто</h1>
         <p class="profile__about">Исследователь океана</p>
@@ -35,6 +38,18 @@
     <p class="footer__copyright">&copy; 2023 Mesto Russia</p>
   </footer>
 
+  <div class="popup popup_edit-avatar">
+    <div class="popup__container">
+      <button class="popup__button-close popup__close" type="button" aria-label="Закрыть pop-up"></button>
+      <form class="popup__form popup__form_edit-avatar" id="edit-avatar" method="post" name="editAvatar" novalidate>
+        <h2 class="popup__title">Обновить аватар</h2>
+        <input id="avatar" class="popup__input popup__input_avatar" name="avatar" placeholder="Ссылка на картинку" type="url" required>
+        <span class="avatar-input-error popup__input-error popup__error"></span>
+        <button class="popup__button-save popup__button-save_edit popup__button-submit" type="submit">Сохранить</button>
+      </form>
+    </div>
+  </div>
+
   <div class="popup popup_edit">
     <div class="popup__container">
       <button class="popup__button-close popup__close" type="button" aria-label="Закрыть pop-up"></button>
@@ -44,7 +59,7 @@
         <span class="name-input-error popup__input-error popup__error"></span>
         <input id="about-input" class="popup__input popup__input_profile_about" name="about" placeholder="О себе" type="text" minlength="2" maxlength="200" required>
         <span class=" about-input-error popup__input-error popup__error" id="about__input-error"></span>
-        <button class="popup__button-save popup__button-save_edit popup__button-submit" type="submit">Сохранить</button>
+        <button class="popup__button-save popup__button-submit" type="submit">Сохранить</button>
       </form>
     </div>
   </div>
@@ -73,11 +88,24 @@
     </div>
   </div>
 
+  <div class="popup popup_item_delete-card">
+    <div class="popup__container">
+      <button class="popup__button-close popup__close" type="button" aria-label="Закрыть pop-up"></button>
+      <h2 class="popup__title">Вы уверены?</h2>
+      <form action="#" class="popup__form" name="formDeleteCard" novalidate>
+        <button type="submit" class="popup__button-save popup__button-submit">Да</button>
+      </form>
+    </div>
+  </div>
+
   <template id="card-template" class="item-template">
     <li class="elements__item">
       <img class="elements__photo" src="#" alt="">
       <h2 class="elements__title"></h2>
-      <button class="elements__like" type="button"></button>
+      <div class="elements__like-block">
+        <button class="elements__like" type="button"></button>
+        <p class="elements__like-counter"></p>
+      </div>
       <button class="elements__trash" type="button"></button>
     </li>
   </template>

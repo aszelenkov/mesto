@@ -3,27 +3,43 @@ import Card from "../components/Card.js";
 import Section from '../components/Section.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
+import PopupWithConfirmation from '../components/PopupWithConfirmation.js';
 import UserInfo from '../components/UserInfo.js';
+import Api from '../components/Api.js';
 import {
   config,
   initialCards,
   containerSelector,
   templateSelector,
-  photoViewSelector,
+  popupViewSelector,
   popupProfileSelector,
   popupItemSelector,
+  popupAvatarSelector,
+  popupDeleteSelector,
   profileNameSelector,
   profileAboutSelector,
+  profileAvatarSelector,
   editButtonProfile,
+  avatarBlock,
   addButtonCard,
 } from '../utils/constants.js';
 import './index.css';
 
+// const api = new Api({
+//   baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-63/',
+//   headers: {
+//     authorization: '53225a79-808c-4502-af98-76089dda326c',
+//     'Content-Type': 'application/json'
+//   }
+// });
+
+
+
 // Информация о пользователе
-const userInfo = new UserInfo(profileNameSelector, profileAboutSelector);
+const userInfo = new UserInfo(profileNameSelector, profileAboutSelector, profileAvatarSelector);
 
 // Создаём экземпляр класса для отображения увеличенной фотографии
-const popupImage = new PopupWithImage(photoViewSelector);
+const popupImage = new PopupWithImage(popupViewSelector);
 popupImage.setEventListeners();
 
 // Функция создания карточки
@@ -58,14 +74,25 @@ const cardFormSubmit = (data) => {
 };
 
 // Всплывающее окно с формой для добавления карточки
-const addPopupCard = new PopupWithForm(popupItemSelector, cardFormSubmit);
-addPopupCard.setEventListeners();
+const popupAddCard = new PopupWithForm(popupItemSelector, cardFormSubmit);
+popupAddCard.setEventListeners();
 
 // Функция-обработчик нажатия на кнопку добавления карточки
 const addButtonClick = () => {
   formValidators['itemAdd'].resetErrors();
-  addPopupCard.open();
+  popupAddCard.open();
 };
+
+const popupDeleteCard = new PopupWithForm(popupDeleteSelector);
+popupDeleteCard.setEventListeners();
+
+
+// const avatarFormSubmit = ({data}) => {
+
+// }
+
+const popupAvatarEdit = new PopupWithForm(popupAvatarSelector);
+popupAvatarEdit.setEventListeners();
 
 // Функция инициализации валидации форм
 const initializeValidation = (config) => {
@@ -87,3 +114,8 @@ const formValidators = initializeValidation(config);
 // Добавляем слушатели на кнопки
 addButtonCard.addEventListener('click',  addButtonClick);
 editButtonProfile.addEventListener('click', editButtonClick);
+avatarBlock.addEventListener('click', () => {
+  // formValidators['editAvatar'].resetErrors();
+  popupAvatarEdit.open();
+
+})

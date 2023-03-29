@@ -6,4 +6,5 @@
   display: block;
   cursor: pointer;
   grid-area: photo;
+  transition: 1s;
 }

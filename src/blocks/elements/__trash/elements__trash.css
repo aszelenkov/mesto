@@ -11,8 +11,11 @@
   color: #fff;
   background-repeat: no-repeat;
   cursor: pointer;
+  transition: 0.3s;
+  /* display: none; */
 }
 
 .elements__trash:hover {
   opacity: .6;
+  transform: scale(1.3);
 }
