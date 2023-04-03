@@ -1,6 +1,6 @@
 .popup__title {
   max-width: calc(100% - 28px);
-  padding: 34px 0 54px;
+  padding-bottom: 54px;
   margin: 0;
   color: #000;
   font-weight: 900;

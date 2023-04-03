@@ -45,6 +45,6 @@
 @import url('../blocks/popup/__container-view/popup__container-view.css');
 @import url('../blocks/popup/_item/popup_item_photo-view.css');
 @import url('../blocks/popup/__figure/popup__figure.css');
-
+/* Подвал сайта */
 @import url('../blocks/footer/footer.css');
 @import url('../blocks/footer/__copyright/footer__copyright.css');

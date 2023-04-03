@@ -3,18 +3,16 @@ export default class UserInfo {
     this._nameUser = document.querySelector(nameSelector);
     this._aboutUser = document.querySelector(infoSelector);
     this._avatarUser = document.querySelector(avatarSelector);
-    this._userId = '';
   };
 
   getUserInfo() {
     return {
       name: this._nameUser.textContent,
-      about: this._aboutUser.textContent,
-      userId: this._userId
+      about: this._aboutUser.textContent
     };
   };
 
-  setUserInfo({ name, about, _id }) {
+  setUserInfo({ name, about }) {
     this._nameUser.textContent = name;
     this._aboutUser.textContent = about;
   };
@@ -23,12 +21,13 @@ export default class UserInfo {
     this._avatarUser.src = url;
   }
 
-  getUserId() {
-    return this._userId;
-  }
 
   setUserId(_id) {
-    this._userId = _id;
+    this._userId = _id
+  }
+
+  getUserId() {
+    return this._userId;
   }
 };
 

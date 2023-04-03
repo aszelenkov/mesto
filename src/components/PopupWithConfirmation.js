@@ -1,17 +1,38 @@
-// import Popup from './Popup.js';
+import Popup from './Popup.js';
 
-// class PopupWithConfirmation extends Popup {
-//   constructor(popupSelector, submitFormCallback) {
-//     super(popupSelector);
-//     this._submitFormCallback = submitFormCallback;
-//     this._popupForm = this._popup.querySelector('.popup__form');
-//     this._popupButton = this._popup.querySelector('.popup__button-submit');
-//   }
+export default class PopupWithConfirmation extends Popup {
+  constructor(popupSelector, submitFormCallback) {
+    super(popupSelector);
+    this._submitFormCallback = submitFormCallback;
+    this._popupForm = this._popup.querySelector('.popup__form');
+    this._buttonForm = this._popup.querySelector('.popup__button-save');
+    this._buttonFormText = this._buttonForm.textContent;
+  };
 
+  submitCallback(removing) {
+    this._submitFormCallback = removing;
+  };
 
+  setEventListeners() {
+    super.setEventListeners();
+    this._popupForm.addEventListener('click', (evt) => {
+      evt.preventDefault();
+      this._submitFormCallback();
+    });
+  };
 
-//   setEventListeners() {
+  setSaveButtonText(isSaving) {
+    if (isSaving) {
+        this._buttonForm.textContent = 'Удаление...';
+      } else {
+        this._buttonForm.textContent = this._buttonFormText;
+      };
+  };
 
+  open(cardId, card) {
+    super.open();
+    this._cardId = cardId;
+    this._card = card;
+  }
 
-//   }
-// }
+};
